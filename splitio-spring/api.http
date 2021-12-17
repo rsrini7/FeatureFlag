@@ -1,0 +1,14 @@
+GET http://localhost:8080/?likes=Teaching&age=19
+Authorization: Basic srini srini
+
+###
+GET http://localhost:8080/
+Authorization: Basic srini srini
+
+###
+GET http://localhost:8080/?age=18
+Authorization: Basic demo demo
+
+###
+GET http://localhost:8080/trigger-alert
+Authorization: Basic srini srini
