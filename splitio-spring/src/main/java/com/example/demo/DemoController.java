@@ -75,11 +75,12 @@ public class DemoController {
             logger.warn("no config retrieved");
         }
 
+        MyConfiguration config = new MyConfiguration();
         // get the millis delay value from the treatment configuration
         int timeDelay = 0;
         if (null != result.config()) {
-            MyConfiguration config = gson.fromJson(result.config(), MyConfiguration.class);
-            logger.info("Config: {}", config.toString());
+            config = gson.fromJson(result.config(), MyConfiguration.class);
+            logger.info("Config: {}", config);
             timeDelay = config.getTimeDelay();
         }
 
@@ -92,6 +93,7 @@ public class DemoController {
         if (randomData) {
             response = "Hey, " + userName + ", Random number: " + UUID.randomUUID().toString();
         }
+        response += "\n Config: "+config;
 
         // does the configuration specify a delay?
         if (timeDelay > 0) {

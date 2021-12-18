@@ -36,9 +36,10 @@ export default function SplitAccountListApp(props) {
 
     const getAccounts = async () => {
         const response = await axios.get(
-            appConfig.backend.baseUrl + appConfig.backend.accountsUri + props.email
+            appConfig.backend.baseUrl + appConfig.backend.accountsUri + "/" + props.email
         );
-        await setAccounts(response.data.accounts);
+        
+        await setAccounts(JSON.parse(response.data.accounts));
     };
 
     return (
@@ -59,7 +60,8 @@ export default function SplitAccountListApp(props) {
                             setUseAllFilter(false);
                         }
 
-                        const filteredAccounts = accounts.filter(filter);
+                        const filteredAccounts = accounts?.filter(filter);
+                        
                         return (
                             <div className="AccountList">
                                 <h2>Hello {props.email}</h2>

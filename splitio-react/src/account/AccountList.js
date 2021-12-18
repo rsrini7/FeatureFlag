@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import { AccountItem } from './AccountItem.js';
 
 export default function AccountList({ accounts }) {
-  const accountList = accounts.map(account => (<AccountItem {...account} key={Math.random()}/>))
+  const accountList = accounts?.map(account => (<AccountItem {...account} key={Math.random()}/>))
   
   return (
     <div>

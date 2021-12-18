@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import io.split.client.SplitClient;
 import io.split.client.SplitClientConfig;
@@ -29,7 +31,7 @@ public class DemoApplication {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
+        //config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
@@ -41,6 +43,16 @@ public class DemoApplication {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+    @Configuration
+    public class WebConfiguration implements WebMvcConfigurer {
+
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/**").allowedMethods("*");
+        }
+    }
+
 
     @Configuration
     public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
