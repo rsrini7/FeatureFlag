@@ -33,7 +33,8 @@ export default function SplitAccountListApp(props) {
         },
         impressionListener: {
           logImpression: logImpression
-        }
+        },
+        debug: true 
     }
 
     const [useAllFilter, setUseAllFilter] = useState(false);

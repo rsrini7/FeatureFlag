@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.nimbusds.jose.shaded.json.JSONArray;
 import com.nimbusds.jose.shaded.json.JSONObject;
 
@@ -63,6 +66,12 @@ public class AccountController {
         }
 
         returnJsonObject.put("accounts", jsonArray.toString());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("treatment", treatment);
+        data.put("key1", "value1");
+
+        splitClient.track(accountId, "account", "account_tracked", data);
 
         return ResponseEntity.ok(returnJsonObject);
     }
