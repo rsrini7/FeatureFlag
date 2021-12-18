@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import java.nio.file.Paths;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +23,9 @@ import io.split.client.SplitClient;
 import io.split.client.SplitClientConfig;
 import io.split.client.SplitFactory;
 import io.split.client.SplitFactoryBuilder;
+import io.split.client.impressions.Impression;
+import io.split.client.impressions.ImpressionListener;
+import io.split.integrations.IntegrationsConfig;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -31,7 +38,7 @@ public class DemoApplication {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        //config.setAllowCredentials(true);
+        // config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
@@ -53,7 +60,6 @@ public class DemoApplication {
         }
     }
 
-
     @Configuration
     public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -74,7 +80,7 @@ public class DemoApplication {
                     .authorizeRequests()
                     .antMatchers("/demo/**").authenticated()
                     .antMatchers("/**").permitAll()
-                    //.anyRequest().authenticated()
+                    // .anyRequest().authenticated()
                     .and().csrf().disable();
         }
 
@@ -89,6 +95,10 @@ public class DemoApplication {
         @Bean
         public SplitClient splitClient() throws Exception {
             SplitClientConfig config = SplitClientConfig.builder()
+                    .integrations(
+                            IntegrationsConfig.builder()
+                                    .impressionsListener(new MyImpressionListener(), 50)
+                                    .build())
                     .setBlockUntilReadyTimeout(20000)
                     .enableDebug()
                     .build();
@@ -98,6 +108,36 @@ public class DemoApplication {
             client.blockUntilReady();
 
             return client;
+        }
+
+        // @Bean
+        public SplitClient splitClientLocalhost() throws Exception {
+            String file = Paths.get("split.yaml").toFile().getAbsolutePath();
+            SplitClientConfig config = SplitClientConfig.builder()
+                    .splitFile(file)
+                    .enableDebug()
+                    .build();
+
+            SplitFactory splitFactory = SplitFactoryBuilder.build("localhost", config);
+            SplitClient client = splitFactory.client();
+            client.blockUntilReady();
+
+            return client;
+        }
+    }
+
+    static class MyImpressionListener implements ImpressionListener {
+        private Logger logger = LoggerFactory.getLogger(MyImpressionListener.class);
+
+        @Override
+        public void log(Impression impression) {
+            // Send this data somewhere. Printing to console for now.
+            logger.debug(impression.toString());
+        }
+
+        @Override
+        public void close() {
+            logger.debug("impression cloed");
         }
     }
 

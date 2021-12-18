@@ -34,6 +34,7 @@ export default function SplitAccountListApp(props) {
         impressionListener: {
           logImpression: logImpression
         },
+        features: appConfig.localFeatures,
         debug: true 
     }
 

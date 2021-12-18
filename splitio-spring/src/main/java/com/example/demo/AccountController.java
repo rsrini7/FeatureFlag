@@ -16,20 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.split.client.SplitClient;
 import io.split.client.api.SplitResult;
-import split.com.google.gson.Gson;
 
 @RestController
 public class AccountController {
 
-    Logger logger = LoggerFactory.getLogger(DemoController.class);
+    private Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    SplitClient splitClient;
+    private SplitClient splitClient;
 
-    Gson gson;
-
-    public AccountController(SplitClient splitClient) {
+    public AccountController(SplitClient splitClient, SplitClient splitClientLocalhost) {
         this.splitClient = splitClient;
-        this.gson = new Gson();
     }
 
     // treatment name pulled from application.properties

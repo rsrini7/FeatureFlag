@@ -18,13 +18,13 @@ import java.security.Principal;
 @RestController
 public class DemoController {
 
-    Logger logger = LoggerFactory.getLogger(DemoController.class);
+    private Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    SplitClient splitClient;
+    private SplitClient splitClient;
 
-    Gson gson;
+    private Gson gson;
 
-    public DemoController(SplitClient splitClient) {
+    public DemoController(SplitClient splitClient, SplitClient splitClientLocalhost) {
         this.splitClient = splitClient;
         this.gson = new Gson();
     }
@@ -65,6 +65,8 @@ public class DemoController {
         } else if (treatment.equals("maybe")) {
             randomData = Math.random() > 0.5 ? true : false;
             logger.info("Treatment " + treatmentName + " maybe ON or OFF");
+        } else if (treatment.equalsIgnoreCase("control")) {
+            throw new RuntimeException("control treatment from Split.");
         } else {
             throw new RuntimeException("Couldn't retrieve treatment from Split.");
         }
@@ -93,7 +95,7 @@ public class DemoController {
         if (randomData) {
             response = "Hey, " + userName + ", Random number: " + UUID.randomUUID().toString();
         }
-        response += "\n Config: "+config;
+        response += "\n Config: " + config;
 
         // does the configuration specify a delay?
         if (timeDelay > 0) {

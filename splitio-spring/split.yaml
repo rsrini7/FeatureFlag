@@ -1,0 +1,14 @@
+- account_filter:
+    treatment: "USA"
+- account_filter:
+    treatment: "INTERNATIONAL"
+    keys: "srini007"
+- help_new_2022:
+    treatment: "maybe"
+    keys: ["user700" ,"srini"]
+- help_new_2022:
+    treatment: "on"
+    keys: ["user100", "demo"]
+    config: "{\"color\" : \"Green\",\"condition\" : \"on\",\"timeDelay\" : \"300\"}"
+- help_new_2022:
+    treatment: "off"

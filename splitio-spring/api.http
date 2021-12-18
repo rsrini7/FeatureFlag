@@ -10,6 +10,10 @@ GET http://localhost:8080/demo?age=18
 Authorization: Basic demo demo
 
 ###
+GET http://localhost:8080/demo?age=18
+Authorization: Basic demo2 demo
+
+###
 GET http://localhost:8080/trigger-alert
 
 ###
@@ -18,4 +22,8 @@ Content-Type: "application/json"
 
 ###
 GET http://localhost:8080/api/v1/accounts/Acc001
+Content-Type: "application/json"
+
+###
+GET http://localhost:8080/api/v1/accounts/srini007
 Content-Type: "application/json"
