@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SplitFactory, SplitTreatments } from '@splitsoftware/splitio-react';
+import { SplitFactory, SplitTreatments, useTrack } from '@splitsoftware/splitio-react';
 import { appConfig } from '../app.config';
 import AccountList from './AccountList'
 import axios from 'axios';
@@ -8,6 +8,12 @@ import Button from 'react-bootstrap/Button';
 import './AccountList.css';
 
 export default function SplitAccountListApp(props) {
+
+    const track = useTrack();
+
+    function logImpression(impressionData) {
+        console.log(impressionData);
+    }
 
     // Filter that accepts only USA accounts
     const usaAccountsFilter = (account) => account.country === appConfig.split.usaTreatment;
@@ -24,6 +30,9 @@ export default function SplitAccountListApp(props) {
         core: {
             authorizationKey: appConfig.split.authorizationKey,
             key: props.accountId,
+        },
+        impressionListener: {
+          logImpression: logImpression
         }
     }
 
@@ -32,6 +41,7 @@ export default function SplitAccountListApp(props) {
 
     useEffect(() => {
         getAccounts(props.accountId);
+        // eslint-disable-next-line
     }, []);
 
     const getAccounts = async () => {
@@ -40,6 +50,7 @@ export default function SplitAccountListApp(props) {
         );
         
         await setAccounts(JSON.parse(response.data.accounts));
+       
     };
 
     return (
@@ -61,6 +72,10 @@ export default function SplitAccountListApp(props) {
                         }
 
                         const filteredAccounts = accounts?.filter(filter);
+
+                        const properties = { key1 : "value1", key2 : 2 };
+                        track(props.accountId, 'account', 'reload_data', "true", properties);
+                        //console.log("track queued : ",queued);
                         
                         return (
                             <div className="AccountList">
