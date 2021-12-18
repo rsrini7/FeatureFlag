@@ -1,0 +1,10 @@
+@media all and (min-width: 480px) {
+  .Account {
+    padding: 60px 0;
+  }
+
+  .Account table {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+}

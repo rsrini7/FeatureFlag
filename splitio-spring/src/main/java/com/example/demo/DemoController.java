@@ -33,7 +33,7 @@ public class DemoController {
     @Value("#{ @environment['split.api.treatement-name'] }")
     private String treatmentName;
 
-    @GetMapping("/")
+    @GetMapping("/demo")
     public String home(Principal principal, @RequestParam(required = false) String likes,
             @RequestParam(required = false) Integer age) {
 
