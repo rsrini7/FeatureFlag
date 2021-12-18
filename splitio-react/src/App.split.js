@@ -5,10 +5,10 @@ import SplitAccountListApp from './account/AccountListApp.split';
 export default function App() {
 
   const [login, setLogin] = useState(true);
-  const [email, setEmail] = useState('');
-
-  const getEmail = (email) => {
-    setEmail(email);
+  const [accountId, setAccountId] = useState('');
+  
+  const getAccountId = (accountId) => {
+    setAccountId(accountId);
     setLogin(false);
   }
 
@@ -18,8 +18,8 @@ export default function App() {
 
   return (
     <div>
-      {login && <Login handleClick={getEmail}/>}
-      {!login && <SplitAccountListApp email={email} handleClick={logout}/>}
+      {login && <Login handleClick={getAccountId}/>}
+      {!login && <SplitAccountListApp accountId={accountId} handleClick={logout}/>}
     </div>
   )
 

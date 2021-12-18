@@ -5,10 +5,10 @@ import BackendAccountListApp from './account/AccountListApp.backend';
 export default function App() {
 
   const [login, setLogin] = useState(true);
-  const [email, setEmail] = useState('');
+  const [accountId, setAccountId] = useState('');
 
-  const getEmail = (email) => {
-    setEmail(email);
+  const getAccountId = (accountId) => {
+    setAccountId(accountId);
     setLogin(false);
   }
 
@@ -18,8 +18,8 @@ export default function App() {
 
   return (
     <div>
-      {login && <Login handleClick={getEmail} />}
-      {!login && <BackendAccountListApp email={email} handleClick={logout} />}
+      {login && <Login handleClick={getAccountId} />}
+      {!login && <BackendAccountListApp accountId={accountId} handleClick={logout} />}
     </div>
   )
 }

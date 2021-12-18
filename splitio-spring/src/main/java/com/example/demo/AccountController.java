@@ -33,10 +33,10 @@ public class AccountController {
     @Value("#{ @environment['split.api.treatement-name-ui'] }")
     private String treatmentName;
 
-    @GetMapping("/api/v1/accounts/{email}")
-    public ResponseEntity<JSONObject> getAccountaccounts(@PathVariable String email) {
+    @GetMapping("/api/v1/accounts/{accountId}")
+    public ResponseEntity<JSONObject> getAccountaccounts(@PathVariable String accountId) {
 
-        SplitResult result = splitClient.getTreatmentWithConfig(email, treatmentName);
+        SplitResult result = splitClient.getTreatmentWithConfig(accountId, treatmentName);
         String treatment = result.treatment();
         JSONArray jsonArray = new JSONArray();
         JSONObject returnJsonObject = new JSONObject();

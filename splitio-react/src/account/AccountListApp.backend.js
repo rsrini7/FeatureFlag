@@ -23,7 +23,7 @@ export default function SplitAccountListApp(props) {
     const splitFactoryConfig = {
         core: {
             authorizationKey: appConfig.split.authorizationKey,
-            key: props.email,
+            key: props.accountId,
         }
     }
 
@@ -31,12 +31,12 @@ export default function SplitAccountListApp(props) {
     const [accounts, setAccounts] = useState([]);
 
     useEffect(() => {
-        getAccounts(props.email);
+        getAccounts(props.accountId);
     }, []);
 
     const getAccounts = async () => {
         const response = await axios.get(
-            appConfig.backend.baseUrl + appConfig.backend.accountsUri + "/" + props.email
+            appConfig.backend.baseUrl + appConfig.backend.accountsUri + "/" + props.accountId
         );
         
         await setAccounts(JSON.parse(response.data.accounts));
@@ -64,7 +64,7 @@ export default function SplitAccountListApp(props) {
                         
                         return (
                             <div className="AccountList">
-                                <h2>Hello {props.email}</h2>
+                                <h2>Hello {props.accountId}</h2>
                                 {treatment === appConfig.split.intlTreatment &&
                                     <div>
                                         <label><input

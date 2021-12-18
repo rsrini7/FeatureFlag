@@ -14,7 +14,7 @@ export default function AccountListApp(props) {
 
     return (
         <div className="AccountList">
-            <h2>Hello {props.email}</h2>
+            <h2>Hello {props.accountId}</h2>
             <AccountList accounts={accounts} />
             <Form onSubmit={handleSubmit}>
                 <Button block size="lg" type="submit">Logout</Button>

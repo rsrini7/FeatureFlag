@@ -4,28 +4,28 @@ import Button from "react-bootstrap/Button";
 import "./Login.css";
 
 export default function Login(props) {
-    const [email, setEmail] = useState("");
+    const [accountId, setAccountId] = useState("");
     const [password, setPassword] = useState("");
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return accountId.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        props.handleClick(email);
+        props.handleClick(accountId);
     }
 
     return (
         <div className="Login">
             <Form onSubmit={handleSubmit}>
-                <Form.Group size="lg" controlId="email">
-                    <Form.Label>Email</Form.Label>
+                <Form.Group size="lg" controlId="accountId">
+                    <Form.Label>Account ID</Form.Label>
                     <Form.Control
                         autoFocus
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        value={accountId}
+                        onChange={(e) => setAccountId(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group size="lg" controlId="password">
