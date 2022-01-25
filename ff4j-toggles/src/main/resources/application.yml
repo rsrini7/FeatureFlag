@@ -1,0 +1,25 @@
+redis:
+  host: ${REDIS_HOST:localhost}
+
+spring:
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:p6spy:h2:mem:fflag;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+
+  # jpa:
+  #   open-in-view: false
+  #   properties:
+  #     hibernate:
+  #       show_sql: true
+  #       format_sql: true
+
+# newrelic:
+#   deployments:
+#     url: "${NEW_RELIC_DEPLOYMENT_API_URL:}"
+#     api-key: "${NEW_RELIC_API_KEY:}"

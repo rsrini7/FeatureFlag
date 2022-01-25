@@ -1,0 +1,1 @@
+insert into FF4J_ROLES values ('fflag-qc', 'ROLE_USER');

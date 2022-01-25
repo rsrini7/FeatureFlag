@@ -1,0 +1,3 @@
+INSERT INTO `authorities` VALUES ('srini','ROLE_USER'),('admin','ROLE_ADMIN'),('srini','ROLE_BETA-TESTER');
+INSERT INTO `users` VALUES ('admin','$2a$10$lVeM9AFqfPN3qqQ7S/alAOddbtnfVgg1iBNB3L5wLzandj3RQ41gO',1),('srini','$2a$10$wyY1C9iwAsbYehtzIGbbceEhU6fnMk6RAoBiP.BAn9hWRP.HlESmW',1);
+INSERT INTO `user_roles` VALUES (2,'admin','ADMIN'),(4,'admin','ROLE_ADMIN'),(3,'srini','ROLE_USER'),(1,'srini','USER');
