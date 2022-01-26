@@ -14,6 +14,9 @@ POST http://localhost:8080/api/ff4j/store/features/fflag-quality-check-1/disable
 Content-Type: application/json
 
 ###
+GET http://localhost:8080/api/ff4j/store/features/
+
+###
 GET http://localhost:8080/message
 Authorization: Basic srini srini
 

@@ -22,7 +22,7 @@ public class UserDAO {
     public List<MyUserDetails> getUser(String username) {
         try {
             final String sql = "select u.username username, u.password password, ur.role role from users u, user_roles ur where u.username = ? and u.username = ur.username";
-            List<MyUserDetails> userDetails = jdbcTemplate.query(sql, new Object[] { username }, new UserRowMapper());
+            List<MyUserDetails> userDetails = jdbcTemplate.query(sql, new UserRowMapper(), username);
             return userDetails;
         } catch (EmptyResultDataAccessException ex) {
             return null;// should have proper handling of Exception

@@ -11,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class MessageController {
-  private static final String NON_QUALITY_CHECK = "NON Quality Check";
-  private static final String QUALITY_CHECK_IS_FINE = "Quality Check is fine";
+  public static final String NON_QUALITY_CHECK = "NON Quality Check";
+  public static final String QUALITY_CHECK_IS_FINE = "Quality Check is fine";
   private final Features features;
 
   @GetMapping("/message")

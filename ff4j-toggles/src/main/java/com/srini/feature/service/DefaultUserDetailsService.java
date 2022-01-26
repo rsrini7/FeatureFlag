@@ -14,7 +14,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) {
-    // TODO: implement
-    return new User(username, "", Collections.emptyList());
+    // Replaced with UserAuthService
+    return new User(username, "srini", Collections.emptyList());
   }
 }
