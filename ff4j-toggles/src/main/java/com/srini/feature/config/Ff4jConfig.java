@@ -12,9 +12,11 @@ import org.ff4j.property.store.JdbcPropertyStore;
 import org.ff4j.property.store.PropertyStore;
 import org.ff4j.redis.RedisConnection;
 import org.ff4j.security.AuthorizationsManager;
+import org.ff4j.spring.boot.web.api.config.EnableFF4jSwagger;
 import org.ff4j.store.JdbcFeatureStore;
 import org.ff4j.web.FF4jDispatcherServlet;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -23,10 +25,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import lombok.RequiredArgsConstructor;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
+@EnableFF4jSwagger
+@EnableSwagger2
+@ConditionalOnClass({ FF4jDispatcherServlet.class })
 @RequiredArgsConstructor
 public class Ff4jConfig extends SpringBootServletInitializer {
 
@@ -100,6 +109,23 @@ public class Ff4jConfig extends SpringBootServletInitializer {
   @Bean
   public PropertyStore propertyStore() {
     return new JdbcPropertyStore(dataSource);
+  }
+
+  @Bean
+  public CorsFilter corsFilter() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.addAllowedOrigin("*");
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+    config.addExposedHeader("Content-Range");
+    config.addExposedHeader("Content-Type");
+    config.addExposedHeader("Accept");
+    config.addExposedHeader("X-Requested-With");
+    config.addExposedHeader("remember-me");
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
   }
 
   // @Bean

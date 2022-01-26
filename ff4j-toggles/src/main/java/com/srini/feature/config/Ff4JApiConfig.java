@@ -4,9 +4,9 @@ import org.ff4j.FF4j;
 import org.ff4j.web.ApiConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
+//@Configuration
 public class Ff4JApiConfig {
   @Value("${server.port:8080}")
   private int port;
@@ -19,4 +19,5 @@ public class Ff4JApiConfig {
     apiConfig.setDocumentation(true);
     return apiConfig;
   }
+
 }
