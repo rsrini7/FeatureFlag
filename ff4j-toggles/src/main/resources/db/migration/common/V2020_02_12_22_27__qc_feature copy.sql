@@ -1,2 +1,2 @@
-insert into ff4j_features(feat_uid, enable, description)
-values ('fflag-qc', 0, 'Quality Checks feature (COVID-19)');
+insert into ff4j_features(feat_uid, enable, description,strategy,expression)
+values ('fflag-quality-check-1', 1, 'Quality Check', 'com.srini.feature.strategy.UserFlippingStrategy','allowedUsers=srini,vasan');

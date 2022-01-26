@@ -1,1 +1,2 @@
-insert into FF4J_ROLES values ('fflag-qc', 'ROLE_USER');
+insert into FF4J_ROLES values ('fflag-quality-check-1', 'ROLE_USER');
+insert into FF4J_CUSTOM_PROPERTIES  values('key','org.ff4j.property.PropertyString','value','srini,vasan,value',null,'fflag-quality-check-1');

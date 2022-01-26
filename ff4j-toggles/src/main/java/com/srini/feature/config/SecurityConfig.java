@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable()
         .authorizeRequests()
         .antMatchers("/ff4j-console/**", "/h2-console/**", "/api/**").permitAll()
-        .antMatchers("/message").hasRole("USER").anyRequest().authenticated().and().httpBasic();
+        .antMatchers("/message").hasAnyRole("USER", "ADMIN").anyRequest().authenticated().and().httpBasic();
     // .anyRequest().permitAll(); // just for DEMO
   }
 
