@@ -1,0 +1,22 @@
+POST http://localhost:8080/api/ff4j/check/fflag-quality-check-1
+#Remove Roles from this feature to authroized without below Authrorization
+Authorization: Basic srini srini
+Content-Type: application/x-www-form-urlencoded
+
+user=vasan
+
+###
+POST http://localhost:8080/api/ff4j/store/features/fflag-quality-check-1/enable
+Content-Type: application/json
+
+###
+POST http://localhost:8080/api/ff4j/store/features/fflag-quality-check-1/disable
+Content-Type: application/json
+
+###
+GET http://localhost:8080/message
+Authorization: Basic srini srini
+
+###
+GET http://localhost:8080/message/vasan
+Authorization: Basic srini srini

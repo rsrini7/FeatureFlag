@@ -47,6 +47,8 @@ public class UserFlippingStrategy extends AbstractFlipStrategy {
      */
     @Override
     public boolean evaluate(String fName, FeatureStore fStore, FlippingExecutionContext ctx) {
+        if (ctx == null)
+            return false;
         // true means required here
         String user = ctx.getString(PARAMNAME_USER, true);
         return setOfAllowedUsers.contains(user);
