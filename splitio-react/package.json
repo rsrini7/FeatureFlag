@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@splitsoftware/splitio-react": "^1.2.4",
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "react": "^17.0.1",
-    "react-bootstrap": "^1.5.0",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.2"
+    "@splitsoftware/splitio-react": "^1.12.1",
+    "axios": "^1.7.3",
+    "bootstrap": "^5.3.3",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

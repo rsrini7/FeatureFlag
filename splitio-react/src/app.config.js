@@ -1,6 +1,6 @@
 export const appConfig = {
     split: {
-        authorizationKey: 'b1o9jf27ur07abhpncot1u56lqvj1tph8tkk', // update to real authorization key1
+        authorizationKey: '4gsdh8sv4td9t07ce041l9c6jmfbs6f90mos', // update to real authorization key1
         //authorizationKey: 'localhost',
         treatmentName: 'account_filter',
         intlTreatment: 'INTERNATIONAL',
